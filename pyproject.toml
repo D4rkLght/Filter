@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "filter"
+version = "0.1.0"
+description = ""
+authors = ["Ярослав Андреев <1frost34eone@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-telegram-bot = "^21.5"
+loguru = "^0.7.2"
+pydantic = "^2.9.0"
+pydantic-settings = "^2.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
