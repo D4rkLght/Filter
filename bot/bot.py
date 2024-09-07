@@ -15,6 +15,9 @@ from bot.handlers.command_handlers import (
     start,
     start_handler,
 )
+from bot.handlers.conversation_handlers import (
+    pay,
+)
 from bot.constants.states import States
 
 from bot.logging.logging import setup_logger
@@ -116,7 +119,7 @@ async def build_main_handler():
         name="main_handler",
         states={
             States.START: [
-                CallbackQueryHandler(start, pattern='start'),
+                CallbackQueryHandler(pay, pattern='start'),
             ]
         },
         fallbacks=[start_handler],

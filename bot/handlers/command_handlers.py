@@ -1,8 +1,7 @@
-from typing import Literal, Optional
+from typing import Literal
 
-from uuid import uuid4
 from telegram import Update
-from telegram.constants import ParseMode, ChatAction
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext, CommandHandler
 
 
@@ -13,29 +12,33 @@ from bot.keyboards.command_keyboards import (
 
 from bot.logging.logging import debug_logger
 from bot.core.settings import settings
+from bot.constants.messages import START_MESSAGE, WELCOME_MESSAGE, WELCOME_1_MESSAGE
 
 @debug_logger
 async def start(update: Update, context: CallbackContext) -> Literal[States.START]:
     """Функция-обработчик команды start."""
-    context.user_data["user_id"] = update.message.from_user.id
     if update.message:
+        await context.bot.send_message(
+            chat_id=update.message.from_user.id,
+            text=WELCOME_MESSAGE,
+            parse_mode=ParseMode.HTML,
+        )
+        await context.bot.send_message(
+            chat_id=update.message.from_user.id,
+            text=WELCOME_1_MESSAGE,
+            parse_mode=ParseMode.HTML,
+        )
+        await context.bot.send_video_note(
+            chat_id=update.message.from_user.id,
+            video_note=open('bot/handlers/test', 'rb')
+        )
         await update.message.reply_text(
-            text='STORY_MESSAGE',
+            text=START_MESSAGE,
             reply_markup=start_keyboard_markup,
             parse_mode=ParseMode.HTML,
             write_timeout=5,
         )
-    # await context.bot.send_message(
-    #     chat_id=update.message.from_user.id,
-    #     text=form_recruiter.format(
-    #         recruiter.name,
-    #         "It-рекрутер",
-    #         recruiter.telegram_username,
-    #         guide_url,
-    #     ),
-    #     parse_mode=ParseMode.HTML,
-    # )
-    # return States.START
+    return States.START
 
 
 start_handler = CommandHandler("start", start)
