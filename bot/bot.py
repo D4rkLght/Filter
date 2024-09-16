@@ -17,6 +17,8 @@ from bot.handlers.command_handlers import (
 )
 from bot.handlers.conversation_handlers import (
     pay,
+    payment,
+    end
 )
 from bot.constants.states import States
 
@@ -118,8 +120,23 @@ async def build_main_handler():
         persistent=False,
         name="main_handler",
         states={
-            States.START: [
-                CallbackQueryHandler(pay, pattern='start'),
+            States.GO: [
+                MessageHandler(
+                    filters.TEXT & ~filters.COMMAND, pay
+                )
+            ],
+            States.CHOOSE: [
+                MessageHandler(
+                    filters.TEXT & ~filters.COMMAND, payment
+                )
+            ],
+            States.SCREEN: [
+                MessageHandler(
+                    filters.TEXT & ~filters.COMMAND, pay
+                ),
+                MessageHandler(
+                    filters.PHOTO & ~filters.COMMAND, end
+                ),
             ]
         },
         fallbacks=[start_handler],
