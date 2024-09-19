@@ -1,3 +1,4 @@
+import asyncio
 from typing import Literal, Optional
 
 from telegram import Update
@@ -34,6 +35,7 @@ async def payment(update: Update, context: CallbackContext) -> Optional[States]:
             write_timeout=5,
             disable_web_page_preview=True
         )
+        await asyncio.sleep(1)
         await context.bot.send_message(
             chat_id=update.message.from_user.id,
             text=SCREENSHOT_MESSAGE,
@@ -51,15 +53,26 @@ async def end(update: Update, context: CallbackContext) -> Optional[States]:
             text=END_MESSAGE,
             reply_markup=remove_keyboard_markup
         )
-        await context.bot.send_message(
+        await asyncio.sleep(1)
+        # await context.bot.send_message(
+        #     chat_id=settings.app_settings.telegram_user_id,
+        #     text=NEW_ORDER_MESSAGE.format(
+        #         user.id,
+        #         user.first_name or 'no name',
+        #         user.username,
+        #         f'https://t.me/{user.username}',
+        #     ),
+        #     parse_mode=ParseMode.HTML,
+        # )
+        await context.bot.send_photo(
             chat_id=settings.app_settings.telegram_user_id,
-            text=NEW_ORDER_MESSAGE.format(
+            photo=query.photo[-1].file_id,
+            caption=NEW_ORDER_MESSAGE.format(
                 user.id,
                 user.first_name or 'no name',
                 user.username,
                 f'https://t.me/{user.username}',
             ),
-            parse_mode=ParseMode.HTML,
+            show_caption_above_media=True
         )
-        # send message to spetial telegram user about info new client.
     return None

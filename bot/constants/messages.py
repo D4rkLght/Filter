@@ -56,6 +56,6 @@ NEW_ORDER_MESSAGE = (
     "NAME: {} 😊\n"
     "Telegram: {}\n"
     "Telegram Link: {}\n"
-    "Подтверждение платежа: !\n"
+    "Подтверждение платежа:\n"
 )
 CRYPTO = 'Cryptocurrency'

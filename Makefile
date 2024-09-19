@@ -13,5 +13,8 @@ help:  # Вызвать help
 	@echo -e "$(COLOR_GREEN)Makefile help:"
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; do printf "$(COLOR_GREEN)-$$(echo $$l | cut -f 1 -d':'):$(COLOR_WHITE)$$(echo $$l | cut -f 2- -d'#')\n"; done
 
-bot-init: # запуск бота
-	poetry run python -m bot.bot --reload
+old-bot-init: # старая команда запуска бота
+	poetry run python -m bot.bot
+
+bot-init:# запуск бота
+	poetry run uvicorn bot.main:app --reload

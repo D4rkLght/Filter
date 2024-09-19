@@ -47,10 +47,9 @@ class Bot:
         """Запускает бота."""
         logger.info("Bot starting...")
         self._stop_event.clear()
-        # asyncio.ensure_future(self._run(), loop=asyncio.get_event_loop())
+        asyncio.ensure_future(self._run(), loop=asyncio.get_event_loop())
+        # task = asyncio.ensure_future(self._run(), loop=asyncio.get_event_loop())
         # await task
-        task = asyncio.ensure_future(self._run(), loop=asyncio.get_event_loop())
-        await task
 
     def stop(self) -> None:
         """Останавливает бота."""
@@ -142,10 +141,10 @@ async def build_main_handler():
         fallbacks=[start_handler],
     )
 
-async def main():
-    bot = Bot()
-    setup_logger(settings.app_settings.log_level)
-    await bot.start()
+# async def main():
+#     bot = Bot()
+#     setup_logger(settings.app_settings.log_level)
+#     await bot.start()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# if __name__ == "__main__":
+#     asyncio.run(main())

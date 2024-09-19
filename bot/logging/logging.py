@@ -10,7 +10,6 @@ def setup_logger(logger_level: str):
     logger.add(
         sys.stdout,
         level=logger_level,
-        enqueue=True,
         backtrace=True,
         diagnose=True,
     )
@@ -18,7 +17,6 @@ def setup_logger(logger_level: str):
         "./logs/{time:YYYY-MM-DD}.log",
         rotation="1 month",
         level=logger_level,
-        enqueue=True,
         backtrace=True,
         diagnose=True,
     )
