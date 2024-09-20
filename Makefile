@@ -24,3 +24,6 @@ bot-start:# запуск бота с докером
 
 bot-reb:# ребилд
 	docker-compose up -d --build;
+
+bot-delete:# удалить докер
+	docker-compose down -v;

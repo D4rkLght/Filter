@@ -18,9 +18,9 @@ from bot.logging.logging import debug_logger
 async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
     """Функция-обработчик команды start."""
     if update.message:
-        if update.message.from_user.id != settings.app_settings.telegram_user_id:
+        if update.message.from_user.id == settings.app_settings.telegram_user_id:
             await update.message.reply_text(
-                text='Hello admin',
+                text='Hello, admin!',
                 write_timeout=5,
             )
             return None

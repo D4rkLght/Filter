@@ -27,6 +27,7 @@ class AppSettings(Base):
     url_test: str | None = None
     webhook_mode: bool | None = False
     webhook_url: str | None = None
+    webhook_path: str | None = None
     webhook_secret_key: str | None = None
     telegram_user_id: int | None = None
 
@@ -65,3 +66,5 @@ class Settings(BaseSettings):
 
 
 settings: Settings = Settings()
+WEBHOOK_PATH = settings.app_settings.webhook_path.format(settings.app_settings.telegram_token)
+WEBHOOK_URL = settings.app_settings.webhook_url.format(WEBHOOK_PATH)
