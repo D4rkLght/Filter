@@ -9,7 +9,7 @@ services:
     container_name: filter-bot
     restart: always
     volumes:
-      - ./logs/bot/:/app/logs
+      - ./logs/:/bot/logs
     env_file:
       - ./.env
     labels:
@@ -21,4 +21,4 @@ services:
       - "traefik.http.routers.verifier.service=verifier"
       - "traefik.http.services.verifier.loadbalancer.server.port=5050"
     ports:
-      - 127.0.0.1:5050:5050
+      - 5050:5050

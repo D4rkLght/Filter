@@ -1,9 +1,7 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
+                      ReplyKeyboardMarkup)
 
-from bot.constants.buttons import (
-    START_BUTTON,
-    PAYMENT_BUTTON
-)
+from bot.constants.buttons import PAYMENT_BUTTON, START_BUTTON
 
 start_keyboard_markup = InlineKeyboardMarkup(
     [

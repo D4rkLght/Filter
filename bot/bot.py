@@ -3,27 +3,15 @@ from typing import Self
 
 from loguru import logger
 from telegram import BotCommand
-from telegram.ext import (
-    Application,
-    ApplicationBuilder,
-    CallbackQueryHandler,
-    ConversationHandler,
-    MessageHandler,
-    filters,
-)
-from bot.handlers.command_handlers import (
-    start,
-    start_handler,
-)
-from bot.handlers.conversation_handlers import (
-    pay,
-    payment,
-    end
-)
-from bot.constants.states import States
+from telegram.ext import (Application, ApplicationBuilder,
+                          CallbackQueryHandler, ConversationHandler,
+                          MessageHandler, filters)
 
-from bot.logging.logging import setup_logger
+from bot.constants.states import States
 from bot.core.settings import settings
+from bot.handlers.command_handlers import start_handler
+from bot.handlers.conversation_handlers import end, pay, payment
+from bot.logging.logging import setup_logger
 
 
 class Bot:
@@ -63,11 +51,6 @@ class Bot:
         await self._start_polling()
         await self.set_bot_commands()
         await self._start_bot()
-        try:
-            await self._stop_event.wait()
-        except:
-            await self._stop_bot()
-            self.stop()
 
     async def _build_app(self) -> Application:
         """Создает и настраивает приложение для бота."""

@@ -16,5 +16,11 @@ help:  # Вызвать help
 old-bot-init: # старая команда запуска бота
 	poetry run python -m bot.bot
 
-bot-init:# запуск бота
+bot-init:# запуск бота без докера
 	poetry run uvicorn bot.main:app --reload
+
+bot-start:# запуск бота с докером
+	docker-compose up -d;
+
+bot-reb:# ребилд
+	docker-compose up -d --build;

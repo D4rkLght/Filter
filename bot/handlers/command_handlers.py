@@ -5,16 +5,14 @@ from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import CallbackContext, CommandHandler
 
-
+from bot.constants.messages import (RULES_MESSAGE, START_MESSAGE,
+                                    WELCOME_1_MESSAGE, WELCOME_MESSAGE)
 from bot.constants.states import States
-from bot.keyboards.command_keyboards import (
-    start_keyboard_markup,
-    payment_keyboard_markup
-)
-
-from bot.logging.logging import debug_logger
 from bot.core.settings import settings
-from bot.constants.messages import START_MESSAGE, WELCOME_MESSAGE, WELCOME_1_MESSAGE, RULES_MESSAGE
+from bot.keyboards.command_keyboards import (payment_keyboard_markup,
+                                             start_keyboard_markup)
+from bot.logging.logging import debug_logger
+
 
 @debug_logger
 async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
@@ -56,13 +54,3 @@ async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
 
 
 start_handler = CommandHandler("start", start)
-
-
-
-
-
-
-
-
-
-

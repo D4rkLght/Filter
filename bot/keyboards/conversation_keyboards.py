@@ -1,11 +1,7 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
+                      ReplyKeyboardMarkup, ReplyKeyboardRemove)
 
-from bot.constants.buttons import (
-    CRYPTO_BUTTON,
-    CARD_BUTTON,
-    BACK_BUTTON
-)
-
+from bot.constants.buttons import BACK_BUTTON, CARD_BUTTON, CRYPTO_BUTTON
 
 pay_keyboard_markup = InlineKeyboardMarkup(
     [
@@ -16,13 +12,13 @@ pay_keyboard_markup = InlineKeyboardMarkup(
     ]
 )
 
-back_keyboard_markup  = ReplyKeyboardMarkup([
+back_keyboard_markup = ReplyKeyboardMarkup([
     [
         BACK_BUTTON
     ]], resize_keyboard=True
 )
 
-choose_pay_keyboard_markup  = ReplyKeyboardMarkup([
+choose_pay_keyboard_markup = ReplyKeyboardMarkup([
     [
         CRYPTO_BUTTON
     ],

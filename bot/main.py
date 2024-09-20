@@ -1,20 +1,13 @@
-from http import HTTPStatus
-from loguru import logger
 from typing import Any
-from httpx import AsyncClient, Request, Response
 
-from fastapi import Depends, FastAPI, status, APIRouter
-from fastapi.staticfiles import StaticFiles
-from fastapi.exceptions import HTTPException
-from fastapi.requests import Request
+from fastapi import APIRouter, FastAPI
 from fastapi.responses import ORJSONResponse
 from uvicorn import run
 
+from bot.bot import Bot
 from bot.core.settings import settings
 from bot.logging.logging import setup_logger
 from bot.middlewares import middleware
-from bot.bot import Bot
-
 
 IS_DEBUG: bool = settings.app_settings.is_debug or False
 LOG_LEVEL: str = settings.app_settings.log_level or "INFO"
@@ -29,7 +22,6 @@ bot = Bot()
 
 async def startup() -> None:
     await bot.start()
-
 
 
 async def shutdown() -> None:
@@ -59,7 +51,6 @@ def get_application() -> FastAPI:
         event_type="shutdown",
         func=shutdown,
     )
-
 
     return app
 
