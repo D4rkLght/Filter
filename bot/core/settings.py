@@ -12,6 +12,7 @@ class Base(BaseSettings):
         env_file_encoding="utf-8"
     )
 
+
 class AppSettings(Base):
     wsgi_app_path: str = "bot.main:app"
     wsgi_host: str = "0.0.0.0"
@@ -57,7 +58,6 @@ class AppSettings(Base):
 
     #     return "DEBUG" if info.data["is_debug"] else "INFO"
     model_config = ConfigDict(env_prefix="APP_")
-
 
 
 class Settings(BaseSettings):

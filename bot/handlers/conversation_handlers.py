@@ -5,13 +5,16 @@ from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
 
+from bot.constants.messages import (CRYPTO, END_MESSAGE, NEW_ORDER_MESSAGE,
+                                    PAY_CARD_MESSAGE, PAY_CRYPTO_MESSAGE,
+                                    PAYMENT_MESSAGE, SCREENSHOT_MESSAGE)
 from bot.constants.states import States
+from bot.core.settings import settings
+from bot.keyboards.conversation_keyboards import (back_keyboard_markup,
+                                                  choose_pay_keyboard_markup,
+                                                  remove_keyboard_markup)
 from bot.logging.logging import debug_logger
 
-from bot.constants.messages import PAYMENT_MESSAGE, PAY_CARD_MESSAGE, END_MESSAGE, PAY_CRYPTO_MESSAGE, SCREENSHOT_MESSAGE, NEW_ORDER_MESSAGE, CRYPTO
-from bot.keyboards.conversation_keyboards import choose_pay_keyboard_markup, back_keyboard_markup, remove_keyboard_markup
-
-from bot.core.settings import settings
 
 @debug_logger
 async def pay(update: Update, context: CallbackContext) -> Optional[States]:
@@ -23,6 +26,7 @@ async def pay(update: Update, context: CallbackContext) -> Optional[States]:
             write_timeout=5,
         )
     return States.CHOOSE
+
 
 @debug_logger
 async def payment(update: Update, context: CallbackContext) -> Optional[States]:
@@ -42,6 +46,7 @@ async def payment(update: Update, context: CallbackContext) -> Optional[States]:
             parse_mode=ParseMode.HTML,
         )
     return States.SCREEN
+
 
 @debug_logger
 async def end(update: Update, context: CallbackContext) -> Optional[States]:
