@@ -2,7 +2,7 @@ name: Push Docker image to Docker Regestry and deploy workflow
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 env:
   REGISTRY: ghcr.io
@@ -17,7 +17,7 @@ jobs:
       packages: write
     if:
       contains('
-          refs/heads/main
+          refs/heads/develop
         ', github.ref)
     steps:
       - name: Checkout repository
@@ -32,41 +32,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/admin
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
-      
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          target: development
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}"
-            "POSTGRES_USERNAME=${{ secrets.POSTGRES_USERNAME }}"
-            "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
-            "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}"
-            "POSTGRES_DB_NAME=${{ secrets.POSTGRES_DB_NAME }}"
-            "POSTGRES_SCHEMA_NAME=${{ secrets.POSTGRES_SCHEMA_NAME }}"
-            "APP_DOCS_USERNAME=${{ secrets.APP_DOCS_USERNAME }}"
-            "APP_DOCS_PASSWORD=${{ secrets.APP_DOCS_PASSWORD }}"
-            "APP_ADMIN_AUTH_USERNAME=${{ secrets.APP_ADMIN_AUTH_USERNAME }}"
-            "APP_ADMIN_AUTH_PASSWORD=${{ secrets.APP_ADMIN_AUTH_PASSWORD }}"
-            "APP_ADMIN_AUTH_TOKEN=${{ secrets.APP_ADMIN_AUTH_TOKEN }}"
-            "APP_ADMIN_AUTH_SECRET_KEY=${{ secrets.APP_ADMIN_AUTH_SECRET_KEY }}"
-            "MQ_HOST=${{ secrets.MQ_HOST }}"
-            "MQ_USERNAME=${{ secrets.MQ_USERNAME }}"
-            "MQ_PASSWORD=${{ secrets.MQ_PASSWORD }}"
-            "MQ_PORT=${{ secrets.MQ_PORT }}"
-            "MQ_QUEUE=${{ secrets.MQ_QUEUE }}"
-            "MQ_EXCHANGE_NAME=${{ secrets.MQ_EXCHANGE_NAME }}"
-            "MQ_ROUTING_KEY=${{ secrets.MQ_ROUTING_KEY }}"
-            "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}"
-            "REDIS_HOST=${{ secrets.REDIS_HOST }}"
-            "REDIS_PORT=${{ secrets.REDIS_PORT }}"
 
   deploy:
       runs-on: ubuntu-latest
@@ -85,9 +53,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker stop admin || true && docker rm admin || true
-            docker image rmi ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}/admin:latest  || true
+            docker stop bot|| true && docker rm bot || true
+            docker image rmi ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest  || true
             export CR_PAT=${{ secrets.GITHUB_TOKEN }}
             echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            sudo docker image pull ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}/admin:latest
-            sudo docker run --restart=always --log-opt max-size=15m --log-opt max-file=5 --hostname=admin --network=ecom --name=admin -p 127.0.0.1:5056:5050 -d ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}/admin:latest
+            sudo docker image pull ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest
+            sudo docker run --restart=always --log-opt max-size=15m --log-opt max-file=5 --hostname=bot --network=ecom --name=bot -p 127.0.0.1:5056:5050 -d ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest

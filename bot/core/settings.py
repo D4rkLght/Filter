@@ -21,10 +21,6 @@ class AppSettings(Base):
     is_debug: bool | None = None
     log_level: str | None = None
     telegram_token: str = "token"
-    box: str | None = None
-    town: str | None = None
-    url: str | None = None
-    url_test: str | None = None
     webhook_mode: bool | None = False
     webhook_url: str | None = None
     webhook_path: str | None = None
