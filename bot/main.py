@@ -1,11 +1,13 @@
 from typing import Any
 
-from fastapi import APIRouter, FastAPI
-from fastapi.responses import ORJSONResponse
+from fastapi import APIRouter, FastAPI, Request
+from loguru import logger
+from telegram import Update
+from telegram.ext import ApplicationBuilder
 from uvicorn import run
 
 from bot.bot import Bot
-from bot.core.settings import settings
+from bot.core.settings import WEBHOOK_PATH, settings
 from bot.logging.logging import setup_logger
 from bot.middlewares import middleware
 
@@ -18,10 +20,11 @@ log_config: dict[str, Any] = setup_logger(
 
 
 bot = Bot()
+application = ApplicationBuilder().token(settings.app_settings.telegram_token).build()
 
 
 async def startup() -> None:
-    await bot.start()
+    await bot.start(application)
 
 
 async def shutdown() -> None:
@@ -34,7 +37,6 @@ router = APIRouter()
 def get_application() -> FastAPI:
     app: FastAPI = FastAPI(
         title="Filter",
-        default_response_class=ORJSONResponse,
         middleware=middleware,
         docs_url=None,
         openapi_url=None,
@@ -56,6 +58,21 @@ def get_application() -> FastAPI:
 
 
 app: FastAPI = get_application()
+
+
+@app.post(WEBHOOK_PATH)
+async def handle_webhook(request: Request):
+    try:
+        # Get the update from the request body
+        update = Update.de_json(await request.json(), application.bot)
+        # Process the update
+        await application.process_update(update)
+
+        return {"status": "ok"}
+    except Exception as e:
+        logger.error(f"Error handling update: {e}")
+        return {"status": "error", "message": str(e)}
+
 
 if __name__ == "__main__":
     run(
