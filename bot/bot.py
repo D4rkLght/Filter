@@ -3,6 +3,7 @@ from typing import Self
 
 from loguru import logger
 from telegram import BotCommand
+
 from telegram.ext import (Application, ConversationHandler, MessageHandler,
                           filters)
 
@@ -52,6 +53,7 @@ class Bot:
         await self._start_bot()
         await self._stop_event.wait()
         await self._stop_bot()
+
 
     async def _build_app(self, app) -> Application:
         """Создает и настраивает приложение для бота."""
