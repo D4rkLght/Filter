@@ -26,6 +26,7 @@ application = ApplicationBuilder().token(settings.app_settings.telegram_token).b
 async def startup() -> None:
     await bot.start(application)
 
+
 async def shutdown() -> None:
     bot.stop()
 

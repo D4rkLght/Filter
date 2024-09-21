@@ -54,7 +54,6 @@ class Bot:
         await self._stop_event.wait()
         await self._stop_bot()
 
-
     async def _build_app(self, app) -> Application:
         """Создает и настраивает приложение для бота."""
 
