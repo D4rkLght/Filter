@@ -43,6 +43,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            "APP_SERVICE_HOSTNAME=${{ secrets.APP_SERVICE_HOSTNAME }}"
+            "APP_TELEGRAM_TOKEN=${{ secrets.APP_TELEGRAM_TOKEN }}"
+            "APP_LOG_LEVEL=${{ secrets.APP_LOG_LEVEL }}"
+            "APP_WEBHOOK_MODE=${{ secrets.APP_WEBHOOK_MODE }}"
+            "APP_WEBHOOK_PATH=${{ secrets.APP_WEBHOOK_PATH }}"
+            "APP_WEBHOOK_URL=${{ secrets.APP_WEBHOOK_URL }}"
+            "APP_TELEGRAM_USER_ID=${{ secrets.APP_TELEGRAM_USER_ID }}"
 
   deploy:
       runs-on: ubuntu-latest
@@ -66,4 +74,4 @@ jobs:
             export CR_PAT=${{ secrets.GITHUB_TOKEN }}
             echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             sudo docker image pull ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest
-            sudo docker run --restart=always --log-opt max-size=15m --log-opt max-file=5 --hostname=bot --network=ecom --name=bot -p 127.0.0.1:5056:5050 -d ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest
+            sudo docker run --restart=always --log-opt max-size=15m --log-opt max-file=5 --hostname=bot --name=bot -p 127.0.0.1:5050:5050 -d ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest
