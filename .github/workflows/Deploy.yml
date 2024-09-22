@@ -67,7 +67,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.PORT }}
           script: |
             docker stop bot|| true && docker rm bot || true
             docker image rmi ${{ env.REGISTRY }}/${{ steps.change-image-name-case.outputs.lowercase }}:latest  || true
