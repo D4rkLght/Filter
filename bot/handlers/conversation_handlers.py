@@ -61,7 +61,6 @@ async def check_text(update: Update, context: CallbackContext) -> Optional[State
 async def payment(update: Update, context: CallbackContext) -> Optional[States]:
     """Обработчик кнопки "payment"."""
     text = update.message.text
-    print(text)
     if text not in BOTH:
         text = [SUPPORT_MESSAGE, PAYMENT_MESSAGE][text == "Go back"]
         await update.message.reply_text(
