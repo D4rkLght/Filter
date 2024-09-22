@@ -3,14 +3,15 @@ from typing import Self
 
 from loguru import logger
 from telegram import BotCommand
-
 from telegram.ext import (Application, ConversationHandler, MessageHandler,
                           filters)
 
+from bot.constants.commands import (HELP_COMMAND, HELP_DESCRIPTION,
+                                    START_COMMAND, START_DESCRIPTION)
 from bot.constants.states import States
 from bot.core.settings import WEBHOOK_URL, settings
-from bot.handlers.command_handlers import start_handler
-from bot.handlers.conversation_handlers import end, pay, payment
+from bot.handlers.command_handlers import help_handler, start_handler
+from bot.handlers.conversation_handlers import check_text, end, pay, payment
 from bot.logging.logging import setup_logger
 
 
@@ -58,7 +59,7 @@ class Bot:
         """Создает и настраивает приложение для бота."""
 
         main_handler = await build_main_handler()
-        app.add_handlers([main_handler, start_handler])
+        app.add_handlers([main_handler, start_handler, help_handler])
         return app
 
     async def _start_polling(self) -> None:
@@ -85,7 +86,8 @@ class Bot:
     async def set_bot_commands(self) -> None:
         """Установить команды бота и их описание для кнопки Menu."""
         commands: list[BotCommand] = [
-            BotCommand('start', 'start'),
+            BotCommand(START_COMMAND, START_DESCRIPTION),
+            BotCommand(HELP_COMMAND, HELP_DESCRIPTION),
         ]
 
         await self._app.bot.set_my_commands(commands)
@@ -98,7 +100,7 @@ class Bot:
 async def build_main_handler():
     """Функция создания главного обработчика."""
     return ConversationHandler(
-        entry_points=[start_handler],
+        entry_points=[start_handler, help_handler],
         persistent=False,
         name="main_handler",
         states={
@@ -114,14 +116,14 @@ async def build_main_handler():
             ],
             States.SCREEN: [
                 MessageHandler(
-                    filters.TEXT & ~filters.COMMAND, pay
+                    filters.TEXT & ~filters.COMMAND, check_text
                 ),
                 MessageHandler(
                     filters.PHOTO & ~filters.COMMAND, end
                 ),
             ]
         },
-        fallbacks=[start_handler],
+        fallbacks=[start_handler, help_handler],
     )
 
 # async def main():

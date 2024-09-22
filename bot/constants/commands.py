@@ -1,2 +1,4 @@
 START_COMMAND = "start"
 START_DESCRIPTION = "start"
+HELP_COMMAND = "help"
+HELP_DESCRIPTION = "help"

@@ -24,14 +24,18 @@ PAY_CARD_MESSAGE = (
     "♡ Enter the amount, write a message (not necessary) and click the 'SEND' button.\n\n"
     "♡ Follow the payment instructions.\n\n"
 )
+HELP_MESSAGE = (
+    "If you have any problems, contact the manager: https://t.me/mcdeim\n"
+)
+SUPPORT_MESSAGE = 'Click the keyboard ⌘/⊞ and chose command'
 PAY_CRYPTO_MESSAGE = (
     "You can use BYBIT, Binance, Telegram or any of the other services\n\n"
     "Amount: 75 USDT\n\n"
-    "Network: TON\n"
-    "Wallet address: EQDD8dqOzaj4zUK6ziJOoG2lx6qf1TEktTRkFJ7T1cfPQb\n"
-    "Tag/memo: 11426808\n\n"
-    "Network: TRC20 (TRX)\n"
-    "Wallet address: TNdjmD6LFPmTdRWjcCkGDK87FXqdSLVc2o\n\n"
+    "Network: <code>TON</code>\n"
+    "Wallet address: <code>EQDD8dqOzaj4zUK6ziJOoG2lx6qf1TEktTRkFJ7T1cfPQb</code>\n"
+    "Tag/memo: <code>11426808</code>\n\n"
+    "Network: <code>TRC20</code> (TRX)\n"
+    "Wallet address: <code>TNdjmD6LFPmTdRWjcCkGDK87FXqdSLVc2o</code>\n\n"
     "_Tips and recommendations 😊\n\n"
     "1. Verify the address: Cryptocurrency transactions are irreversible. Ensure that you enter the correct address.\n"
     "2. Transaction fee: Consider the network fee when sending the payment to ensure that the full amount reaches us_\n"
@@ -58,4 +62,6 @@ NEW_ORDER_MESSAGE = (
     "Telegram Link: {}\n"
     "Подтверждение платежа:\n"
 )
-CRYPTO = 'Cryptocurrency'
+CRYPTO = 'Cryptocurrency 🔴'
+BOTH = (CRYPTO, 'Bank Сard ⚪')
+POSSIBLE_OPTINONS = ("Yeah! (go to payment)", "go", "yes", "Yes", "GO")

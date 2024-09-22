@@ -8,3 +8,4 @@ class States(str, enum.Enum):
     CHOOSE = "choose"
     SCREEN = "screen"
     END = "end"
+    HELP = "help"
