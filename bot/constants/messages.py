@@ -3,47 +3,47 @@ START_MESSAGE = (
 )
 WELCOME_MESSAGE = (
     "Hi  👋\n"
-    "I'm VɅLERIE's electronic assistant 🤖"
+    "I'm VɅLERIE's <b>electronic assistant</b> 🤖"
 )
 WELCOME_1_MESSAGE = (
-    "I will help you register for individual Russian lessons 🇷🇺"
+    "I will help you register for individual russian lessons 🇷🇺"
 )
 RULES_MESSAGE = (
-    "In private lessons you will get:\n\n"
+    "<b>In private lessons you will get</b>:\n\n"
     "✓ Private chat with Valerie on Telegram\n"
-    "✓ Communication, learning and feedback from Valerie\n"
-    "✓ 3-5 short videos per day (except weekends) from Valerie\n"
-    "Cost: 150€ 75€ for one week of learning (50% discount for the first month)"
+    "✓ A personalized learning program based on your current language level\n"
+    "✓ From 2 to 5 training videos per day that are produced by Valerie specifically for you and your training program\n"
+    "✓ Understandable and engaging homework\n\n"
+    "Cost: 100€ for one week (20€ / per day)"
 )
 PAYMENT_MESSAGE = "Select a convenient payment method 👇"
 PAY_CARD_MESSAGE = (
-    "♡ Go at this link: https://t.me/tribute/app?startapp=d8e8\n\n"
-    "(the Tribute app and the donation page will open)\n\n"
-    "♡ Amount to pay: 76€ (amount includes service fee)\n\n"
-    "♡ In “donation amount”, select “other amount” and specify the amount you need to pay.\n\n"
-    "♡ Enter the amount, write a message (not necessary) and click the 'SEND' button.\n\n"
-    "♡ Follow the payment instructions.\n\n"
+    "✓ Go at this link: https://t.me/tribute/app?startapp=d8e8\n\n"
+    "(<i>the Tribute app and the donation page will open</i>)\n\n"
+    "✓ Amount to pay: <b>100€</b> (<i>amount includes service fee</i>)\n\n"
+    "✓ Enter the amount, write a message (not necessary) and click the 'SEND' button\n\n"
+    "✓ Follow the payment instructions.\n\n"
 )
 HELP_MESSAGE = (
     "If you have any problems, contact the manager: https://t.me/mcdeim\n"
 )
 SUPPORT_MESSAGE = 'Click the keyboard ⌘/⊞ and chose command'
 PAY_CRYPTO_MESSAGE = (
-    "You can use BYBIT, Binance, Telegram or any of the other services\n\n"
-    "Amount: 75 USDT\n\n"
-    "Network: <code>TON</code>\n"
-    "Wallet address: <code>EQDD8dqOzaj4zUK6ziJOoG2lx6qf1TEktTRkFJ7T1cfPQb</code>\n"
-    "Tag/memo: <code>11426808</code>\n\n"
-    "Network: <code>TRC20</code> (TRX)\n"
-    "Wallet address: <code>TNdjmD6LFPmTdRWjcCkGDK87FXqdSLVc2o</code>\n\n"
-    "_Tips and recommendations 😊\n\n"
-    "1. Verify the address: Cryptocurrency transactions are irreversible. Ensure that you enter the correct address.\n"
-    "2. Transaction fee: Consider the network fee when sending the payment to ensure that the full amount reaches us_\n"
+    "You can use BYBIT, Binance, Telegram or any of the other crypto services.\n\n"
+    "<b>Amount: 75 USDT</b>\n\n"
+    "<b>Network</b>: <code>TON</code>\n"
+    "<b>Wallet address</b>: <code>EQDD8dqOzaj4zUK6ziJOoG2lx6qf1TEktTRkFJ7T1cfPQb</code>\n"
+    "<b>Tag/memo</b>: <code>11426808</code>\n\n"
+    "<b>Network</b>: <code>TRC20</code> (TRX)\n"
+    "<b>Wallet address</b>: <code>TNdjmD6LFPmTdRWjcCkGDK87FXqdSLVc2o</code>\n\n"
+    "<b>Tips and recommendations</b> 😊\n\n"
+    "✓ <i>Verify the address: Cryptocurrency transactions are irreversible. Ensure that you enter the correct address.</i>\n"
+    "✓ <i>Transaction fee: Consider the network fee when sending the payment to ensure that the full amount reaches us.</i>\n"
 )
 SCREENSHOT_MESSAGE = (
-    "❗️ Please send a screenshot confirming the transfer❗️\n\n"
-    "You will be redirected to a chat room with Valerie to begin your\n"
-    "Russian lessons as soon as your payment is confirmed"
+    "❗️ <b>Please send a screenshot confirming the transfer</b> ❗️\n\n"
+    "<i>You will be redirected to a chat room with Valerie to begin your</i>\n"
+    "<i>Russian lessons as soon as your payment is confirmed</i>"
 )
 END_MESSAGE = (
     "Your payment has been accepted ✅\n"

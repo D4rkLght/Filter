@@ -28,12 +28,14 @@ async def pay(update: Update, context: CallbackContext) -> Optional[States]:
                 text=PAYMENT_MESSAGE,
                 reply_markup=choose_pay_keyboard_markup,
                 write_timeout=5,
+                parse_mode=ParseMode.HTML
             )
         else:
             await update.message.reply_text(
                 text=SUPPORT_MESSAGE,
                 reply_markup=payment_keyboard_markup,
                 write_timeout=5,
+                parse_mode=ParseMode.HTML
             )
             return States.GO
     return States.CHOOSE
@@ -48,11 +50,13 @@ async def check_text(update: Update, context: CallbackContext) -> Optional[State
                 text=PAYMENT_MESSAGE,
                 reply_markup=choose_pay_keyboard_markup,
                 write_timeout=5,
+                parse_mode=ParseMode.HTML
             )
         elif update.message.text == "Need help!":
             await update.message.reply_text(
                 text=HELP_MESSAGE,
                 write_timeout=5,
+                parse_mode=ParseMode.HTML
             )
     return States.CHOOSE
 
@@ -67,6 +71,7 @@ async def payment(update: Update, context: CallbackContext) -> Optional[States]:
                 text=text,
                 reply_markup=choose_pay_keyboard_markup,
                 write_timeout=5,
+                parse_mode=ParseMode.HTML
             )
         return States.CHOOSE
     pay_text = [PAY_CRYPTO_MESSAGE, PAY_CARD_MESSAGE][CRYPTO != text]
@@ -82,6 +87,7 @@ async def payment(update: Update, context: CallbackContext) -> Optional[States]:
         await context.bot.send_message(
             chat_id=update.message.from_user.id,
             text=SCREENSHOT_MESSAGE,
+            parse_mode=ParseMode.HTML
         )
     return States.SCREEN
 
@@ -94,7 +100,8 @@ async def end(update: Update, context: CallbackContext) -> Optional[States]:
     if query:
         await update.message.reply_text(
             text=END_MESSAGE,
-            reply_markup=remove_keyboard_markup
+            reply_markup=remove_keyboard_markup,
+            parse_mode=ParseMode.HTML
         )
         await context.bot.send_photo(
             chat_id=settings.app_settings.telegram_user_id,

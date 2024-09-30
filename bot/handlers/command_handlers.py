@@ -27,16 +27,19 @@ async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
         await context.bot.send_message(
             chat_id=update.message.from_user.id,
             text=WELCOME_MESSAGE,
+            parse_mode=ParseMode.HTML
         )
         await asyncio.sleep(3)
         await context.bot.send_message(
             chat_id=update.message.from_user.id,
             text=WELCOME_1_MESSAGE,
+            parse_mode=ParseMode.HTML
         )
         await asyncio.sleep(4)
         await context.bot.send_message(
             chat_id=update.message.from_user.id,
             text=RULES_MESSAGE,
+            parse_mode=ParseMode.HTML
         )
         await asyncio.sleep(7)
         await context.bot.send_video_note(
@@ -47,6 +50,7 @@ async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
         await update.message.reply_text(
             text=START_MESSAGE,
             reply_markup=payment_keyboard_markup,
+            parse_mode=ParseMode.HTML
         )
     return States.GO
 
