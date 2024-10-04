@@ -17,7 +17,6 @@ Filter telegram bot
     3.3. [Запуск бота локально](#local)
 
 4. [Cтэк технологий](#stack)
-5. [Cсылки на сторонние библиотеки](#library)
 
 
 # 1. Cведения о команде: <a id="info"></a>
@@ -92,6 +91,5 @@ docker bot-delete
 [![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/ru/)
 [![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/)
-
-# 5 Cторонние библиотеки <a id="library"></a>
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Poetry](https://img.shields.io/badge/Poetry-464646?style=flat-square&logo=Poetry)](https://python-poetry.org/)
