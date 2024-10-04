@@ -25,9 +25,7 @@ Filter telegram bot
 
 # 2. Cсылка на бота <a id="host"></a>
 
-[<Бот>](http://t.me/valeriestill_bot)
-
-[Swagger](http://212.109.192.63/api/v1/swagger)
+[Бот](http://t.me/valeriestill_bot)
 
 # 3. Подготовка к запуску <a id="start"></a>
 
