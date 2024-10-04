@@ -1,0 +1,9 @@
+START_BUTTON = "start"
+CRYPTO_BUTTON = "Cryptocurrency 🔴"
+CARD_BUTTON = "Bank Сard ⚪"
+BACK_BUTTON = "Go back"
+PAYMENT_BUTTON = 'Yeah! (go to payment)'
+HELP_BUTTON = "Need help!"
+RESTART_BUTTON = "Restart bot!"
+PRIVATE_BUTTON = "Private channel"
+TELEGRAM_BUTTON = "Telegram"
