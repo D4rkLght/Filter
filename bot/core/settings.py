@@ -44,4 +44,4 @@ class Settings(BaseSettings):
 settings: Settings = Settings()
 WEBHOOK_PATH = settings.app_settings.webhook_path.format(settings.app_settings.telegram_token)
 WEBHOOK_URL = settings.app_settings.webhook_url.format(WEBHOOK_PATH)
-TIME_IN_SECONDS = 60
+TIME_IN_SECONDS = 259200
