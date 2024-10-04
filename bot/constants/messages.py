@@ -27,7 +27,7 @@ PAY_CARD_MESSAGE = (
     "✓ Follow the payment instructions\n\n"
 )
 HELP_MESSAGE = (
-    "If you have any problems, contact the manager: https://t.me/mcdeim\n"
+    "If you have any problems, contact the manager: https://t.me/v_still_manager\n"
 )
 SUPPORT_MESSAGE = 'Click the keyboard ⌘/⊞ and chose command'
 PAY_CRYPTO_MESSAGE = (
