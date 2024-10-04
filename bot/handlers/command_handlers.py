@@ -24,12 +24,12 @@ async def start(update: Update, context: CallbackContext) -> Literal[States.GO]:
         user_id = query.from_user.id
     else:
         user_id = update.message.from_user.id
-    #     if user_id == settings.app_settings.telegram_user_id:
-    #         await update.message.reply_text(
-    #             text='Hello, admin!',
-    #             write_timeout=5,
-    #         )
-    #         return None
+        if user_id == settings.app_settings.telegram_user_id:
+            await update.message.reply_text(
+                text='Hello, admin!',
+                write_timeout=5,
+            )
+            return None
     if not [job for job in context.job_queue.jobs() if job.user_id == user_id]:
         context.job_queue.run_once(  # type: ignore[attr-defined]
                 callback=send_message,

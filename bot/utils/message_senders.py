@@ -1,10 +1,11 @@
 from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
 
-from bot.logging.logging import debug_logger
 from bot.constants.messages import TIME_LONG_MESSAGE
-from bot.keyboards.conversation_keyboards import message_long_time_keyboard_markup
 from bot.constants.states import States
+from bot.keyboards.conversation_keyboards import \
+    message_long_time_keyboard_markup
+from bot.logging.logging import debug_logger
 
 
 @debug_logger

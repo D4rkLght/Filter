@@ -3,14 +3,14 @@ from typing import Self
 
 from loguru import logger
 from telegram import BotCommand
-from telegram.ext import (Application, ConversationHandler, MessageHandler,
-                          filters, CallbackQueryHandler)
+from telegram.ext import (Application, CallbackQueryHandler,
+                          ConversationHandler, MessageHandler, filters)
 
 from bot.constants.commands import (HELP_COMMAND, HELP_DESCRIPTION,
                                     START_COMMAND, START_DESCRIPTION)
 from bot.constants.states import States
 from bot.core.settings import WEBHOOK_URL, settings
-from bot.handlers.command_handlers import help_handler, start_handler, start
+from bot.handlers.command_handlers import help_handler, start, start_handler
 from bot.handlers.conversation_handlers import check_text, end, pay, payment
 from bot.logging.logging import setup_logger
 

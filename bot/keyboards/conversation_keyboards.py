@@ -2,7 +2,8 @@ from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       ReplyKeyboardMarkup, ReplyKeyboardRemove)
 
 from bot.constants.buttons import (BACK_BUTTON, CARD_BUTTON, CRYPTO_BUTTON,
-                                   HELP_BUTTON, RESTART_BUTTON, PRIVATE_BUTTON, TELEGRAM_BUTTON)
+                                   HELP_BUTTON, PRIVATE_BUTTON, RESTART_BUTTON,
+                                   TELEGRAM_BUTTON)
 
 back_keyboard_markup = ReplyKeyboardMarkup([
     [
