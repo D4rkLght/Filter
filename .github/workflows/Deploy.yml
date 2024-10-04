@@ -1,8 +1,9 @@
 name: Push Docker image to Docker Regestry and deploy workflow
 
-off:
+on:
   push:
     branches: [main]
+    types: [ closed ]
 
 env:
   REGISTRY: ghcr.io

@@ -1,4 +1,4 @@
-![bridge_workflow](https://github.com/D4rkLght/Filter/actions/workflows/Deploy.yml/badge.svg)
+![filter_workflow](https://github.com/D4rkLght/Filter/actions/workflows/Deploy.yml/badge.svg)
 # Filter
 Filter telegram bot
 
