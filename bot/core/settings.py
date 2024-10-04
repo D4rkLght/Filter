@@ -1,4 +1,5 @@
 from multiprocessing import cpu_count
+from pathlib import Path
 
 from pydantic import ConfigDict, ValidationInfo, field_validator
 from pydantic.networks import PostgresDsn
@@ -33,27 +34,6 @@ class AppSettings(Base):
     ) -> str:
         return self.docs_name
 
-    # @field_validator("is_debug", mode="before")
-    # def build_is_debug(
-    #     cls,
-    #     value: bool | None,
-    #     info: ValidationInfo,
-    # ) -> bool:
-    #     if value is not None:
-    #         return value
-
-    #     return bool(info.data["environment"] == "development")
-
-    # @field_validator("log_level", mode="before")
-    # def build_log_level(
-    #     cls,
-    #     value: str | None,
-    #     info: ValidationInfo,
-    # ) -> str:
-    #     if value is not None:
-    #         return value
-
-    #     return "DEBUG" if info.data["is_debug"] else "INFO"
     model_config = ConfigDict(env_prefix="APP_")
 
 
@@ -64,3 +44,4 @@ class Settings(BaseSettings):
 settings: Settings = Settings()
 WEBHOOK_PATH = settings.app_settings.webhook_path.format(settings.app_settings.telegram_token)
 WEBHOOK_URL = settings.app_settings.webhook_url.format(WEBHOOK_PATH)
+TIME_IN_SECONDS = 60

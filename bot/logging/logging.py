@@ -25,8 +25,7 @@ def setup_logger(logger_level: str):
 def debug_logger(func):
     """Декоратор для логирования обработчиков и шедулеров."""
     schedulers_data = [
-        "send_is_pair_successful_message",
-        "send_deleting_from_db_message",
+        "send_message",
     ]
 
     async def wrapper(*args, **kwargs):

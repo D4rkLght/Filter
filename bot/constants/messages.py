@@ -69,3 +69,9 @@ NEW_ORDER_MESSAGE = (
 CRYPTO = 'Cryptocurrency 🔴'
 BOTH = (CRYPTO, 'Bank Сard ⚪')
 POSSIBLE_OPTINONS = ("Yeah! (go to payment)", "go", "yes", "Yes", "GO")
+TIME_LONG_MESSAGE = (
+    "Hi there!\n\n"
+    "I saw that you've been inactive for a long time!\n"
+    "Thank you for using the bot to register for my classes 🩷\n\n"
+    "I'll just leave the active links here:"
+)

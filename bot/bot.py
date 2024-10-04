@@ -4,13 +4,13 @@ from typing import Self
 from loguru import logger
 from telegram import BotCommand
 from telegram.ext import (Application, ConversationHandler, MessageHandler,
-                          filters)
+                          filters, CallbackQueryHandler)
 
 from bot.constants.commands import (HELP_COMMAND, HELP_DESCRIPTION,
                                     START_COMMAND, START_DESCRIPTION)
 from bot.constants.states import States
 from bot.core.settings import WEBHOOK_URL, settings
-from bot.handlers.command_handlers import help_handler, start_handler
+from bot.handlers.command_handlers import help_handler, start_handler, start
 from bot.handlers.conversation_handlers import check_text, end, pay, payment
 from bot.logging.logging import setup_logger
 
@@ -107,12 +107,14 @@ async def build_main_handler():
             States.GO: [
                 MessageHandler(
                     filters.TEXT & ~filters.COMMAND, pay
-                )
+                ),
+                CallbackQueryHandler(start, pattern='start'),
             ],
             States.CHOOSE: [
                 MessageHandler(
                     filters.TEXT & ~filters.COMMAND, payment
-                )
+                ),
+                CallbackQueryHandler(start, pattern='start'),
             ],
             States.SCREEN: [
                 MessageHandler(
@@ -121,15 +123,8 @@ async def build_main_handler():
                 MessageHandler(
                     filters.PHOTO & ~filters.COMMAND, end
                 ),
-            ]
+                CallbackQueryHandler(start, pattern='start'),
+            ],
         },
         fallbacks=[start_handler, help_handler],
     )
-
-# async def main():
-#     bot = Bot()
-#     setup_logger(settings.app_settings.log_level)
-#     await bot.start()
-
-# if __name__ == "__main__":
-#     asyncio.run(main())

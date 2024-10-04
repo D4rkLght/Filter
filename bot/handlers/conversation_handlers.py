@@ -98,6 +98,7 @@ async def end(update: Update, context: CallbackContext) -> Optional[States]:
     query = update.message
     user = query.from_user
     if query:
+        [job.schedule_removal() for job in context.job_queue.jobs() if job.user_id == user.id]
         await update.message.reply_text(
             text=END_MESSAGE,
             reply_markup=remove_keyboard_markup,

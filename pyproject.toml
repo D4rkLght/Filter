@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-python-telegram-bot = "^21.5"
+python-telegram-bot = {extras = ["job-queue"], version = "^21.6"}
 loguru = "^0.7.2"
 pydantic = "^2.9.0"
 pydantic-settings = "^2.4.0"
