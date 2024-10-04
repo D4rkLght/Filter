@@ -1,6 +1,6 @@
 name: Push Docker image to Docker Regestry and deploy workflow
 
-close:
+off:
   push:
     branches: [main]
 
